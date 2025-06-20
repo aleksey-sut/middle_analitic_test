@@ -1,4 +1,3 @@
-# docker-compose.yml
 version: "3.9"
 
 services:
@@ -10,7 +9,8 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      # хранение БД вне контейнера
-      - ./data:/var/lib/postgresql/data
-      # SQL-скрипты, которые entrypoint выполнит при первом старте
+      - pgdata:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d
+
+volumes:
+  pgdata:
